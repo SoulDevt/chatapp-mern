@@ -4,6 +4,8 @@ const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 const colors = require('colors')
 
+const userRoutes = require("./routes/userRoutes")
+
 
 
 const app = express()
@@ -15,15 +17,17 @@ app.get('/', (req, res) => {
     res.send('api running')
 })
 
-app.get('/api/chat', (req, res) => { 
-    res.send(chats);
-})
-app.get('/api/chat/:id', (req, res) => { 
-    console.log(req.params.id);
+app.use("api/user", userRoutes)
 
-    const singleChat = chats.find(chat => chat._id === req.params.id)
-    console.log(singleChat)
-})
+// app.get('/api/chat', (req, res) => { 
+//     res.send(chats);
+// })
+// app.get('/api/chat/:id', (req, res) => { 
+//     console.log(req.params.id);
+
+//     const singleChat = chats.find(chat => chat._id === req.params.id)
+//     console.log(singleChat)
+// })
 
 const PORT = process.env.PORT || 4000
 
