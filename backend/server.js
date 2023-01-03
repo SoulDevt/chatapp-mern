@@ -8,16 +8,18 @@ const userRoutes = require("./routes/userRoutes")
 
 
 
-const app = express()
+
 dotenv.config()
 connectDB();
+const app = express()
 
+app.use(express.json()) //to accept JSON data
 
 app.get('/', (req, res) => { 
     res.send('api running')
 })
 
-app.use("api/user", userRoutes)
+app.use("/api/user", userRoutes)
 
 // app.get('/api/chat', (req, res) => { 
 //     res.send(chats);
